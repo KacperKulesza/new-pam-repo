@@ -1,11 +1,15 @@
-import {View, Text, Pressable, StyleSheet} from "react-native"
-function CategoryGridTitle(props){
+import {View, Text, Pressable, StyleSheet, Platform} from "react-native"
+function CategoryGridTitle({color, title, whenPressExecute}){
     
     return(
         <View style={styles.outerView}>
-            <Pressable>
-                <View style={styles.innerView}>
-                    <Text>{props.title}</Text>
+            <Pressable android_ripple={{color: "#ccc"}}
+            style={({pressed}) => {
+                [styles.pressableView, pressed ? styles.pressedButton : null]}}
+            onPress={whenPressExecute}>
+                <View style={[styles.innerView, 
+                    {backgroundColor: color}]}>
+                    <Text style={styles.title}>{title}</Text>
                 </View>
             </Pressable>
         </View>
@@ -24,12 +28,24 @@ const styles=StyleSheet.create({
         shadowColor: 'black',
         shadowOpacity: 0.25,
         shadowOffset: {width:0, height:2},
-        shadowRadius: 8
+        shadowRadius: 8,
+        overflow: Platform.OS === 'android' ? 'hidden' : 'visible'
     },
     innerView:{
         flex: 1,
         padding: 16,
         justifyContent: 'center',
-        alignItems: 'center'
+        textAlign: 'center',
+        borderRadius: 18,
+    },
+    pressableView:{
+        flex: 1
+    },
+    pressedButton:{
+        opacity: 0.5
+    },
+    title:{
+        fontWeight: "bold",
+        fontSize: 18
     }
 })
