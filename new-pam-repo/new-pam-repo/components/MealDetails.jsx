@@ -6,8 +6,8 @@ function MealDetails(props){
         <>
             <View style={styles.details}>
                 <Text style={styles.detailItem}>{props.duration} </Text>
-                <Text style={styles.detailItem}>{props.complexity.toUpperCase()} </Text>
-                <Text style={styles.detailItem}>{props.affordability.toUpperCase()} </Text>
+                <Text style={styles.detailItem}>{props.complexity} </Text>
+                <Text style={styles.detailItem}>{props.affordability} </Text>
             </View>
         </>
     )
